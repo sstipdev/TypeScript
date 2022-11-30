@@ -1,36 +1,36 @@
-let 이름: string = "kim";
-let 나이: number = 20;
-let marry: boolean = true;
-let 회원들: string[] = ["kim", "park"];
-let 멤버들: {
-  member1: string;
-  member2: string;
+// 변수에 number or string 타입이 올 경우 Union Type 이라고 함
+let 회원: number | string = 123;
+
+let 회원들: (number | string)[] = [1, 2, "3"];
+
+let 오브젝트: {
+  a: string | number;
 } = {
-  member1: "kim",
-  member2: "park",
+  a: 123,
 };
 
-// ts는 변수 생성시 타입스크립트가 해당 변수의 타입을 자동으로 부여해준다. 즉 일일히 타입을 지정해줄 필요는 없음
-let 이름표 = "kim";
-let 나이는 = 20;
+// 이름이라는 변수에 어떤 타입이든 가능함 any 또는 unknown 이라는 타입도 있음
+let 이름: any;
 
-let userName: string = "프론트";
-let userAge: number = 20;
+let 나이: string | number;
+// union 타입에는 +1 이안됨 단독 number 또는 string 타입에만 +1 연산처리가 가능
+나이 + 1;
 
-const musicInfo: {
-  title: string;
-  singer: string;
+type getType = string | undefined | number | boolean;
+let user: string = "kim";
+let age: undefined | number = undefined;
+let married: boolean = false;
+let 철수: getType[] = [user, age, married];
+
+let school: {
+  score: (number | boolean)[];
+  teacher: string;
+  friend: string | string[];
 } = {
-  title: "제목",
-  singer: "가수",
+  score: [100, 97, 84],
+  teacher: "Phil",
+  friend: "smith",
 };
 
-const project: {
-  member: string[];
-  days: number;
-  started: boolean;
-} = {
-  member: ["kim", "park"],
-  days: 30,
-  started: true,
-};
+school.score[4] = false;
+school.friend = ["lee", school.teacher];

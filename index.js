@@ -1,22 +1,22 @@
-var 이름 = "kim";
-var 나이 = 20;
-var marry = true;
-var 회원들 = ["kim", "park"];
-var 멤버들 = {
-    member1: "kim",
-    member2: "park",
+// 변수에 number or string 타입이 올 경우 Union Type 이라고 함
+var 회원 = 123;
+var 회원들 = [1, 2, "3"];
+var 오브젝트 = {
+    a: 123,
 };
-// ts는 변수 생성시 타입스크립트가 해당 변수의 타입을 자동으로 부여해준다. 즉 일일히 타입을 지정해줄 필요는 없음
-var 이름표 = "kim";
-var 나이는 = 20;
-var userName = "프론트";
-var userAge = 20;
-var musicInfo = {
-    title: "제목",
-    singer: "가수",
+// 이름이라는 변수에 어떤 타입이든 가능함 any 또는 unknown 이라는 타입도 있음
+var 이름;
+var 나이;
+// union 타입에는 +1 이안됨 단독 number 또는 string 타입에만 +1 연산처리가 가능
+나이 + 1;
+var user = "kim";
+var age = undefined;
+var married = false;
+var 철수 = [user, age, married];
+var school = {
+    score: [100, 97, 84],
+    teacher: "Phil",
+    friend: "smith",
 };
-var project = {
-    member: ["kim", "park"],
-    days: 30,
-    started: true,
-};
+school.score[4] = false;
+school.friend = ["lee", school.teacher];
