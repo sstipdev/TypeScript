@@ -1,59 +1,29 @@
-// 변수타입이 불확실하다면 Narrowing 문법으로 처리해줘야함
-function 함수(x) {
-    if (typeof x === "string") {
-        return x + 1;
-    }
-    return x + 1;
-}
-console.log(함수("1"));
-function 내함수(x) {
-    var arr = [];
-    //   if (typeof x === "number") {
-    //     return (arr[0] = x);
-    //   }
-    // 또는 narrowing문법이 싫다면 assertion 문법으로 아래처럼도 가능
-    arr[0] = x;
-    // as 문법의 용도는 narrowing 할때 사용함 (복잡한 유니온타입을 하나의 타입으로 지정하고 싶을때)
-    // 즉 아래처럼 문법 작성하면 뒤짐
-    // let userName:string = "user";
-    // userName as number
-    // as 문법은 버그추적이 안됨 정말 필요할때만 써야함
-}
-function 변환(a) {
-    var arr = [];
-    a.forEach(function (a) {
-        if (typeof a === "string") {
-            arr.push(Number(a));
-            console.log(arr);
-        }
-        else {
-            arr.push(a);
-            console.log(arr);
-        }
-    });
-}
-변환(["1"]);
-var chul = {
-    subject: "math",
+// type 지정이 너무 길경우 type alias(type 키워드)를 쓰면 된다.
+var aniaml;
+var 동물 = {
+    name: "kim",
+    age: 20,
 };
-var young = {
-    subject: ["science", "english"],
+var friend = {
+    name: "ms",
 };
-var min = {
-    subject: ["science", "art", "korean"],
+// type 키워드에 readonly를 지정해주었으나 변경은됨 실행까지 막지는 않으나 터미널에 에러를 발생 시켜줌
+friend.name = "hi";
+console.log(friend.name);
+var position = {
+    x: 20,
+    y: 20,
 };
-function getData(a) {
-    if (typeof a.subject === "string") {
-        console.log(a.subject);
-        return a.subject;
-    }
-    else if (Array.isArray(a.subject)) {
-        console.log(a.subject[a.subject.length - 1]);
-        return a.subject[a.subject.length - 1];
-    }
-    else {
-        console.log("ㅂ2");
-        return "ㅂ2";
-    }
-}
-getData({ subject: ["ㅁㅁㅁ", "ㄴㄴㄴ", "ㅇㅇㅇ"] });
+var table = {
+    size: 20,
+    position: [12, 5],
+};
+var info = {
+    name: "ms",
+    phone: 112,
+};
+var user = {
+    name: "ji",
+    phone: 119,
+    child: true,
+};

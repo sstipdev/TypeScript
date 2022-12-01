@@ -1,73 +1,76 @@
-// 변수타입이 불확실하다면 Narrowing 문법으로 처리해줘야함
+// type 지정이 너무 길경우 type alias(type 키워드)를 쓰면 된다.
 
-function 함수(x: number | string) {
-  if (typeof x === "string") {
-    return x + 1;
-  }
-  return x + 1;
-}
+type Aniaml = string | number | undefined;
+let aniaml: Aniaml;
 
-console.log(함수("1"));
-
-function 내함수(x: number | string) {
-  let arr: number[] = [];
-  //   if (typeof x === "number") {
-  //     return (arr[0] = x);
-  //   }
-  // 또는 narrowing문법이 싫다면 assertion 문법으로 아래처럼도 가능
-  arr[0] = x as number;
-
-  // as 문법의 용도는 narrowing 할때 사용함 (복잡한 유니온타입을 하나의 타입으로 지정하고 싶을때)
-  // 즉 아래처럼 문법 작성하면 뒤짐
-  // let userName:string = "user";
-  // userName as number
-  // as 문법은 버그추적이 안됨 정말 필요할때만 써야함
-}
-
-function 변환(a: (number | string)[]) {
-  let arr: number[] = [];
-  a.forEach((a) => {
-    if (typeof a === "string") {
-      arr.push(Number(a));
-      console.log(arr);
-    } else {
-      arr.push(a);
-      console.log(arr);
-    }
-  });
-}
-
-변환(["1"]);
-
-let chul: {
-  subject: string;
-} = {
-  subject: "math",
+type 동물들 = { name: string; age: number };
+let 동물: 동물들 = {
+  name: "kim",
+  age: 20,
 };
 
-let young: {
-  subject: string[];
-} = {
-  subject: ["science", "english"],
+// typescript에선 객체의 키 값변경 되는 부분을 readonly 를 통해 막을수 있다 (사실 실행은 되나 에러 뜸)
+type Friend = {
+  readonly name: string;
+};
+const friend: Friend = {
+  name: "ms",
 };
 
-let min: {
-  subject: string[];
-} = {
-  subject: ["science", "art", "korean"],
+// type 키워드에 readonly를 지정해주었으나 변경은됨 실행까지 막지는 않으나 터미널에 에러를 발생 시켜줌
+friend.name = "hi";
+console.log(friend.name);
+
+// Type 키워드를 union type으로 합치기가능 ( 변수처럼 사용하면 됨 )
+type Name = string;
+type Age = number;
+type Person = Name | Age;
+
+// &(And) 연산자로 Object 타입을 하나로 합칠수가 있다. js에서는 && 이나 ts에선 &
+// type 키워드는 같은 이름의 type을 재정의가 불가능하다 js의 const 키워드랑 비슷하다고 보면 됨
+type PositionX = {
+  x: number;
+};
+type PositionY = {
+  y: number;
+};
+type NewType = PositionX & PositionY;
+
+let position: NewType = {
+  x: 20,
+  y: 20,
 };
 
-function getData(a: { subject: string | string[] }) {
-  if (typeof a.subject === "string") {
-    console.log(a.subject);
-    return a.subject;
-  } else if (Array.isArray(a.subject)) {
-    console.log(a.subject[a.subject.length - 1]);
-    return a.subject[a.subject.length - 1];
-  } else {
-    console.log("ㅂ2");
-    return "ㅂ2";
-  }
-}
+//
 
-getData({ subject: ["ㅁㅁㅁ", "ㄴㄴㄴ", "ㅇㅇㅇ"] });
+type Table = {
+  color?: string;
+  size: number;
+  readonly position: number[];
+};
+
+const table: Table = {
+  size: 20,
+  position: [12, 5],
+};
+
+type Info = {
+  name: string;
+  phone: number;
+  email?: string;
+};
+type User = {
+  child: boolean;
+};
+type NewUser = Info & User;
+
+const info: Info = {
+  name: "ms",
+  phone: 112,
+};
+
+const user: NewUser = {
+  name: "ji",
+  phone: 119,
+  child: true,
+};
