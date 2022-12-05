@@ -1,15 +1,38 @@
-// 미리 들어올수 있는 자료를 정의해두는 타입이 리터럴 타입
-var 이름;
-이름 = 123;
-var me;
-me = "solo";
-function fuc(a) { }
-fuc("hello");
-function game(text) {
-    return [text];
-}
-var file = {
-    name: "kim",
+var func = function (a) {
+    return 2;
 };
-function myFuc(a) { }
-myFuc(file.name); // < 'kim' 이라는 파라미터만 받게끔 되어있기 때문에 자료를 참고하는 변수를 넣을경우 에러.
+function func1(a) {
+    a();
+}
+function func2() { }
+func1(func2);
+var userInfo = {
+    name: "kim",
+    age: 20,
+    plusOne: function (a) {
+        return a + 1;
+    },
+    changeName: function () {
+        console.log("hello");
+    },
+};
+var cutZero = function (a) {
+    var text;
+    if (a[0] === "0") {
+        text = a.replace("0", "");
+        return text;
+    }
+    return a;
+};
+console.log(cutZero("0123"));
+function removeDash(x) {
+    var result = x.replace("/-/g", "");
+    return parseFloat(result);
+}
+console.log(removeDash("454-489-48"));
+function 만들함수(a, func1, func2) {
+    var result = func1(a);
+    var result2 = func2(result);
+    console.log(result2);
+}
+console.log(만들함수("010-1111-2222", cutZero, removeDash));

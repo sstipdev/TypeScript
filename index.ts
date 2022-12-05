@@ -1,22 +1,62 @@
-// 미리 들어올수 있는 자료를 정의해두는 타입이 리터럴 타입
+type Fuctype = (a: string) => number;
 
-let 이름: 123;
-이름 = 123;
+let func: Fuctype = function (a) {
+  return 2;
+};
 
-let me: "head" | "solo";
-me = "solo";
-
-function fuc(a: "hello"): void {}
-
-fuc("hello");
-
-function game(text: "가위" | "바위" | "보"): ("가위" | "바위" | "보")[] {
-  return [text];
+function func1(a: Function) {
+  a();
 }
 
-var file = {
-  name: "kim",
-} as const;
+function func2() {}
 
-function myFuc(a: "kim") {}
-myFuc(file.name); // < 'kim' 이라는 파라미터만 받게끔 되어있기 때문에 자료를 참고하는 변수를 넣을경우 에러.
+func1(func2);
+
+type User = {
+  name: string;
+  age: number;
+  plusOne: (a: number) => number;
+  changeName: () => void;
+};
+
+let userInfo: User = {
+  name: "kim",
+  age: 20,
+  plusOne(a) {
+    return a + 1;
+  },
+  changeName: () => {
+    console.log("hello");
+  },
+};
+
+type CutType = (a: string) => string;
+
+let cutZero: CutType = function (a) {
+  let text: string;
+  if (a[0] === "0") {
+    text = a.replace("0", "");
+    return text;
+  }
+  return a;
+};
+
+console.log(cutZero("0123"));
+
+function removeDash(x: string): number {
+  let result = x.replace("/-/g", "");
+  return parseFloat(result);
+}
+
+console.log(removeDash("454-489-48"));
+
+type 함수타입1 = (a: string) => string;
+type 함수타입2 = (a: string) => number;
+
+function 만들함수(a: string, func1: 함수타입1, func2: 함수타입2) {
+  let result = func1(a);
+  let result2 = func2(result);
+  console.log(result2);
+}
+
+console.log(만들함수("010-1111-2222", cutZero, removeDash));
