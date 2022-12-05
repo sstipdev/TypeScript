@@ -1,76 +1,22 @@
-// type 지정이 너무 길경우 type alias(type 키워드)를 쓰면 된다.
+// 미리 들어올수 있는 자료를 정의해두는 타입이 리터럴 타입
 
-type Aniaml = string | number | undefined;
-let aniaml: Aniaml;
+let 이름: 123;
+이름 = 123;
 
-type 동물들 = { name: string; age: number };
-let 동물: 동물들 = {
+let me: "head" | "solo";
+me = "solo";
+
+function fuc(a: "hello"): void {}
+
+fuc("hello");
+
+function game(text: "가위" | "바위" | "보"): ("가위" | "바위" | "보")[] {
+  return [text];
+}
+
+var file = {
   name: "kim",
-  age: 20,
-};
+} as const;
 
-// typescript에선 객체의 키 값변경 되는 부분을 readonly 를 통해 막을수 있다 (사실 실행은 되나 에러 뜸)
-type Friend = {
-  readonly name: string;
-};
-const friend: Friend = {
-  name: "ms",
-};
-
-// type 키워드에 readonly를 지정해주었으나 변경은됨 실행까지 막지는 않으나 터미널에 에러를 발생 시켜줌
-friend.name = "hi";
-console.log(friend.name);
-
-// Type 키워드를 union type으로 합치기가능 ( 변수처럼 사용하면 됨 )
-type Name = string;
-type Age = number;
-type Person = Name | Age;
-
-// &(And) 연산자로 Object 타입을 하나로 합칠수가 있다. js에서는 && 이나 ts에선 &
-// type 키워드는 같은 이름의 type을 재정의가 불가능하다 js의 const 키워드랑 비슷하다고 보면 됨
-type PositionX = {
-  x: number;
-};
-type PositionY = {
-  y: number;
-};
-type NewType = PositionX & PositionY;
-
-let position: NewType = {
-  x: 20,
-  y: 20,
-};
-
-//
-
-type Table = {
-  color?: string;
-  size: number;
-  readonly position: number[];
-};
-
-const table: Table = {
-  size: 20,
-  position: [12, 5],
-};
-
-type Info = {
-  name: string;
-  phone: number;
-  email?: string;
-};
-type User = {
-  child: boolean;
-};
-type NewUser = Info & User;
-
-const info: Info = {
-  name: "ms",
-  phone: 112,
-};
-
-const user: NewUser = {
-  name: "ji",
-  phone: 119,
-  child: true,
-};
+function myFuc(a: "kim") {}
+myFuc(file.name); // < 'kim' 이라는 파라미터만 받게끔 되어있기 때문에 자료를 참고하는 변수를 넣을경우 에러.
