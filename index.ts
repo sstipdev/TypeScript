@@ -1,62 +1,35 @@
-type Fuctype = (a: string) => number;
+// TypeScript로 html 변경과 조작할때
+/**
+ * 1.narrowing 문법
+ * 2.instanceof 문법
+ * 3.as 키워드
+ * 4.오브젝트 옵셔널 체이닝 ?.
+ * 5.strict 모드 끄기
+ */
 
-let func: Fuctype = function (a) {
-  return 2;
-};
-
-function func1(a: Function) {
-  a();
+let title = document.querySelector("#title");
+if (title !== null) {
+  title.innerHTML = "테스트";
 }
 
-function func2() {}
+let link = document.querySelector(".link");
+if (link instanceof HTMLAnchorElement) {
+  link.href = "https://google.com";
+}
 
-func1(func2);
+let button = document.querySelector("#button");
+button?.addEventListener("click", function () {});
 
-type User = {
-  name: string;
-  age: number;
-  plusOne: (a: number) => number;
-  changeName: () => void;
-};
+/** 문제 */
 
-let userInfo: User = {
-  name: "kim",
-  age: 20,
-  plusOne(a) {
-    return a + 1;
-  },
-  changeName: () => {
-    console.log("hello");
-  },
-};
+const img = document.querySelector("#image");
+if (img instanceof HTMLImageElement) {
+  img.src = "new.jpg";
+}
 
-type CutType = (a: string) => string;
-
-let cutZero: CutType = function (a) {
-  let text: string;
-  if (a[0] === "0") {
-    text = a.replace("0", "");
-    return text;
+const naver = document.querySelectorAll(".naver");
+naver.forEach((a) => {
+  if (a instanceof HTMLAnchorElement) {
+    a.href = "https://kakao.com";
   }
-  return a;
-};
-
-console.log(cutZero("0123"));
-
-function removeDash(x: string): number {
-  let result = x.replace("/-/g", "");
-  return parseFloat(result);
-}
-
-console.log(removeDash("454-489-48"));
-
-type 함수타입1 = (a: string) => string;
-type 함수타입2 = (a: string) => number;
-
-function 만들함수(a: string, func1: 함수타입1, func2: 함수타입2) {
-  let result = func1(a);
-  let result2 = func2(result);
-  console.log(result2);
-}
-
-console.log(만들함수("010-1111-2222", cutZero, removeDash));
+});

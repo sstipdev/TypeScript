@@ -1,38 +1,29 @@
-var func = function (a) {
-    return 2;
-};
-function func1(a) {
-    a();
+// TypeScript로 html 변경과 조작할때
+/**
+ * 1.narrowing 문법
+ * 2.instanceof 문법
+ * 3.as 키워드
+ * 4.오브젝트 옵셔널 체이닝 ?.
+ * 5.strict 모드 끄기
+ */
+var title = document.querySelector("#title");
+if (title !== null) {
+    title.innerHTML = "테스트";
 }
-function func2() { }
-func1(func2);
-var userInfo = {
-    name: "kim",
-    age: 20,
-    plusOne: function (a) {
-        return a + 1;
-    },
-    changeName: function () {
-        console.log("hello");
-    },
-};
-var cutZero = function (a) {
-    var text;
-    if (a[0] === "0") {
-        text = a.replace("0", "");
-        return text;
+var link = document.querySelector(".link");
+if (link instanceof HTMLAnchorElement) {
+    link.href = "https://google.com";
+}
+var button = document.querySelector("#button");
+button === null || button === void 0 ? void 0 : button.addEventListener("click", function () { });
+/** 문제 */
+var img = document.querySelector("#image");
+if (img instanceof HTMLImageElement) {
+    img.src = "new.jpg";
+}
+var naver = document.querySelectorAll(".naver");
+naver.forEach(function (a) {
+    if (a instanceof HTMLAnchorElement) {
+        a.href = "https://kakao.com";
     }
-    return a;
-};
-console.log(cutZero("0123"));
-function removeDash(x) {
-    var result = x.replace("/-/g", "");
-    return parseFloat(result);
-}
-console.log(removeDash("454-489-48"));
-function 만들함수(a, func1, func2) {
-    var result = func1(a);
-    var result2 = func2(result);
-    console.log(result2);
-}
-console.log(만들함수("010-1111-2222", cutZero, removeDash));
+});
