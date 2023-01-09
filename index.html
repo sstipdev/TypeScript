@@ -7,14 +7,38 @@
     <title>Document</title>
   </head>
   <body>
-    <h4 id="title">인사</h4>
-    <a href="naver.com" class="link">링크</a>
-    <button id="button">버튼</button>
-
-    <img id="image" src="test.jpg" />
-    <a class="naver" href="naver.com">링크</a>
-    <a class="naver" href="naver.com">링크</a>
-    <a class="naver" href="naver.com">링크</a>
     <script src="index.js"></script>
+    <script>
+      /** 비슷한 object를 많이 만들일 있을때 class를 만들어 쓰면 됨
+       * class는 object를 뽑는 기계
+       */
+
+      function mac(q, w) {
+        (this.q = q), (this.w = w);
+      }
+      const nunu1 = new mac("consume", "snowball");
+      const garen1 = new mac("strike", "courage");
+
+      const nunu = {
+        q: "consume",
+        w: "snowball",
+      };
+      const garen = {
+        q: "strike",
+        w: "courage",
+      };
+
+      // ES6 문법
+
+      class Mac2 {
+        constructor(q, w) {
+          this.q = q;
+          this.w = w;
+        }
+      }
+
+      const nunu2 = new Mac2("consume", "snowball");
+      const garen2 = new Mac2("strike", "courage");
+    </script>
   </body>
 </html>
