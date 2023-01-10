@@ -1,19 +1,14 @@
-// in 키워드로 object narrowing 가능 속성명 in 오브젝트자료
-function fuc(animal) {
-    if ("swim" in animal) {
-        animal.swim;
-    }
-}
-// 오브젝트 instanceof 부모class
-var date = new Date();
-if (date instanceof Date) {
-    console.log(1);
-}
-function 함수(x) {
-    if (x.wheel === "4개") {
-        console.log("the car is " + x.color);
+/**
+ * function return 값에 붙일 수 있는 never type
+ * 1.return 값이 없어야함
+ * 2.endpoint가 없어야함
+ */
+// never 타입 등장하는 경우 1
+function 함수(a) {
+    if (typeof a === "string") {
+        console.log(a);
     }
     else {
-        console.log("the bike is " + x.color);
+        console.log(a);
     }
 }
