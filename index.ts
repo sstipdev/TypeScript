@@ -1,98 +1,40 @@
-// interface는 중복선언이 가능, type은 중복선언이 불가함
-
-// interface 의 장점 : extends로 복사가능
-
-interface Square {
-  color: string;
-  width: number;
+// Rest 파라미터를 쓰면 파라미터를 여러개 들어올수가 있음
+function 함수(...a: number[]) {
+  console.log(a);
 }
 
-let nemo: Square = { color: "red", width: 100 };
+함수(1, 2, 3, 54, 6, 6, 1, 23, 4, 5, 1);
 
-interface Student {
-  name: string;
-}
+let arr = [1, 2, 3];
+let arr2 = [4, 5];
+let arr3 = [...arr, ...arr2];
+console.log(arr3);
 
-interface Teacher extends Student {
-  age: number;
-}
+// destructuring 문법
+const text = ["안녕", 100];
+const [text1, text2] = ["안녕", 100];
 
-let stu: Student = {
-  name: "park",
-};
-
-let tea: Teacher = {
-  name: "kim",
-  age: 20,
-};
-
-// type 키워드로도 가능함 인터섹션 교차 타입
-// 왼쪽, 오른쪽 둘다 만족해주는 타입을 만들어 달라
-type Animal = {
-  name: string;
-};
-
-type Cat = {
-  age: number;
-} & Animal;
-
-let cat: Cat = {
-  name: "beria",
-  age: 50,
-};
+const { student, age } = { student: true, age: 20 };
 
 // 문제
+let person = { student: true, age: 20 };
 
-interface Item {
-  brand: string;
-  serialNumber: number;
-  model: string[];
+function perFunc({ student, age }: { student: boolean; age: number }) {
+  console.log(student, age);
 }
 
-const item: Item = {
-  brand: "samsung",
-  serialNumber: 1360,
-  model: ["TV", "phone"],
-};
+perFunc({ student: true, age: 23 });
 
-interface Cart {
-  product: string;
-  price: number;
+function userInfo({ user, comment, admin }: { user: string; comment: number[]; admin: boolean }) {
+  console.log(user, comment, admin);
 }
 
-interface Card extends Cart {
-  card: boolean;
+userInfo({ user: "kim", comment: [1, 5, 4, 2], admin: true });
+
+type Wine = (number | string | boolean)[];
+
+function getWine([a, b, c]: Wine) {
+  console.log(a, b, c);
 }
 
-const cart: Cart[] = [
-  {
-    product: "청소기",
-    price: 700,
-  },
-  {
-    product: "삼다수",
-    price: 800,
-  },
-];
-
-const card: Card[] = [
-  {
-    product: "청소기",
-    price: 7000,
-    card: false,
-  },
-];
-
-interface PMresult {
-  plus: (a: number, b: number) => number;
-  minus: (a: number, b: number) => number;
-}
-
-const pm: PMresult = {
-  plus(a, b) {
-    return a + b;
-  },
-  minus(a, b) {
-    return a - b;
-  },
-};
+getWine([40, "winw", false]);
